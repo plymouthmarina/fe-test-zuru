@@ -1,0 +1,44 @@
+<Layout>
+    <modal name="modal--submit" class="customModal">
+        <button class="customModal__closeButton" @click="$modal.hide('modal--submit')"></button>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&rel=0&showinfo=0" title="YouTube video player" class="customModal__video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </modal>
+    <div class="pageWrapper">
+        <div class="home__intro">
+            <h1>Compare <span>Life Insurance</span> Quotes</h1>
+            <p>Search the market for competitive life insurance quotes from <span>Legal & General, Aviva, Zurich</span> & more!</p>
+        </div>
+        <form @submit.prevent="onSubmit" class="home__form">
+            <div class="home__form__text">
+                <ul>
+                    <li>
+                        <label>First Name</label>
+                        <input type="text" v-model="form.firstName" :class="{'empty': errors.includes('firstName')}" @change="validateFields" />
+                    </li>
+                    <li>
+                        <label>Last Name</label>
+                        <input type="text" v-model="form.lastName" :class="{'empty': errors.includes('lastName')}" @change="validateFields" />
+                    </li>
+                    <li>
+                        <label>Email</label>
+                        <input type="text" v-model="form.email" :class="{'empty': errors.includes('email')}" @change="validateFields" />
+                    </li>
+                </ul>
+            </div>
+            <div class="home__form__radio">
+                <p>{{ form.recipient.label }}</p>
+                <ul>
+                    <li>
+                        <input type="radio" id="option1" :value="form.recipient.option1" v-model="form.recipient.picked" :class="{'empty': errors.includes('picked')}" @change="validateFields" />
+                        <label for="option1">{{ form.recipient.option1 }}</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="option2" :value="form.recipient.option2" v-model="form.recipient.picked" :class="{'empty': errors.includes('picked')}" @change="validateFields" />
+                        <label for="option2">{{ form.recipient.option2 }}</label>
+                    </li>
+                </ul>
+                <input type="submit" value="Get My Free Quote" class="home__form__submit" />
+            </div>
+        </form>
+    </div>
+</Layout>

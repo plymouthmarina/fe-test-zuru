@@ -1,0 +1,45 @@
+//*** Variables ***//
+
+// Colours
+$arapawa: #1b0e65;
+$black-rock: #150433;
+$flamingo: #F0652F;
+$mercury: #e9e9e9;
+$picton-blue: #4299E1;
+$science-blue: #006ebe;
+
+// Responsive breakpoints
+$breakpoints: (
+    mobile: 320px,
+    tablet: 600px,
+    desktop: 1024px
+);
+
+@mixin mobile {
+    $mobileBreakpoint: map-get($breakpoints, tablet);
+    @media screen and (max-width: ($mobileBreakpoint - 1)) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    $tabletBreakpoint: map-get($breakpoints, tablet);
+    $desktopBreakpoint: map-get($breakpoints, desktop);
+    @media screen and (min-width: $tabletBreakpoint) and (max-width: ($desktopBreakpoint - 1)) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    $desktopBreakpoint: map-get($breakpoints, desktop);
+    @media screen and (min-width: ($desktopBreakpoint)) {
+        @content;
+    }
+}
+
+@mixin larger-than($point-name) {
+    $width: map-get($breakpoints, $point-name);
+    @media (min-width: $width) {
+        @content;
+    }
+}
